@@ -10,10 +10,11 @@ title: Advanced Custom Gutenberg Blocks
 email: mariyan_dimitrov@yahoo.com
 description: > # this means to ignore newlines until "baseurl:"
   Tutorials about how to customise our custom Gutenberg blocks on advanced level.
-baseurl: "/advancedGutenberg" # the subpath of your site, e.g. /blog
-url: "https://gutenberg-lessons-dx.com" # the base hostname & protocol for your site
+destination: docs
+baseurl: "/blog" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site
 twitter_username: ""
-github_username:  mariyan96
+github_username:  mariyan-dimitrov
 
 # Build settings
 markdown: kramdown
