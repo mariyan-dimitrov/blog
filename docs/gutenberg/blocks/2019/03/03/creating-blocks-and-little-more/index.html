@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Creating Gutenberg blocks and a little more! &#8211; Advanced Custom Gutenberg Blocks</title>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Tutorials about how to customise our custom Gutenberg blocks on advanced level.
+">
+    <meta name="robots" content="all">
+    <meta name="author" content="">
+    
+    <meta name="keywords" content="gutenberg, blocks">
+    <link rel="canonical" href="http://localhost:4000/blog/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Advanced Custom Gutenberg Blocks" href="/blog/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/pixyll.css?201903032350" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+    
+
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Creating Gutenberg blocks and a little more!">
+    <meta property="og:description" content="Tutorials about how to customise our custom Gutenberg blocks on advanced level.
+">
+    <meta property="og:url" content="http://localhost:4000/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/">
+    <meta property="og:site_name" content="Advanced Custom Gutenberg Blocks">
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="Creating Gutenberg blocks and a little more!" />
+    <meta name="twitter:description" content="Tutorials about how to customise our custom Gutenberg blocks on advanced level.
+" />
+    <meta name="twitter:url" content="http://localhost:4000/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/" />
+    
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/blog/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/blog/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/blog/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/blog/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/blog/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/blog/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/blog/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/blog/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/blog/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/blog/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/blog/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/blog/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/blog/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+
+    
+</head>
+
+<body class="site">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/blog/" class="site-title">Advanced Custom Gutenberg Blocks</a>
+      <nav class="site-nav">
+        
+
+
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/about/">About Pixyll</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/contact/">Say Hello</a>
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Creating Gutenberg blocks and a little more!</h1>
+  <span class="post-meta">Mar 3, 2019</span><br>
+  
+  <span class="post-meta small">
+  
+    4 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <p>First things first, we need to create a new block so we can understand how it works. To do that we need to have npm version &gt;=5.2. New custom block means that we will create a new plugin that we can activate in the site’s WP homepage.</p>
+
+<h4 id="create-the-plugin"><strong>Create the plugin</strong></h4>
+
+<p>After we are done with the local installation of the project we need to go into localProject/wp-content/plugins/ with the terminal. Typing <strong>npx create-guten-block my-block</strong> will create a custom block with the name “my-block”. Now we should activate the plugin from WP.</p>
+
+<h4 id="activate-the-plugin"><strong>Activate the plugin</strong></h4>
+
+<p>Activate the created plugin from the <strong>Plugins</strong> section from WordPress side of your project.</p>
+
+<h4 id="runcompile-the-plugin"><strong>Run/compile the plugin</strong></h4>
+
+<p>After we are done with the <strong>installation</strong> and <strong>activation</strong> of the plugin, we need to run it. That is done with the command <strong>npm run start</strong>. That will listen to changes in the plugin and will compile it on every change. After you are ready with all modifications and you need to push it to production, run the command <strong>npm run build</strong>.</p>
+
+<h4 id="understanding-the-structure-of-the-blockplugin"><strong>Understanding the structure of the block/plugin</strong></h4>
+
+<p>First thing we need to do is to run <strong>npm run start</strong> so that the npm will listen to our changes. This is what we should be able to see:</p>
+
+<p><img src="/blog/images/creating-blocks-and-little-more/compiling.jpeg" alt="Console in Compiling" /></p>
+
+<p>NOTE: if you get this kind of error while working with your block, just remove the block from the already saved page, save it again and the error will be gone</p>
+
+<p><img src="/blog/images/creating-blocks-and-little-more/error.jpeg" alt="Error whilw Compiling" /></p>
+
+<p>In src/block we have <strong>block.js, editor.scss and style.scss.</strong> The <strong>editor.scss</strong> is the style for the editors/backend page in WP, but the <strong>style.scss</strong> is the style for <strong>both_ front-end_</strong> page and <em>editor</em>/backend page.</p>
+
+<p>In block.js things get little bit confusing, but we will cover most of the stuff. We have one main function (<strong>registerBlockType</strong>) with some arguments.</p>
+
+<ul>
+  <li><strong>title</strong>: This is the name of the block we will see in the editors page</li>
+  <li><strong>icon</strong>: The icon we will see for this block if we want to change it from the default “shield” icon, we can go to <a href="https://developer.wordpress.org/resource/dashicons/">here</a><code class="highlighter-rouge">.</code> Type the type of dashicon without the <strong>dashicon</strong> word.</li>
+  <li><strong>category</strong>:  In which section of the Gutenberg’s block we will find our custom one.</li>
+  <li><strong>attributes</strong>: There are our variables that we will work with. They will be used to pass information from <strong>edit/backend</strong> to <strong>save/frontend</strong> functions/views. Every attribute should have type value (<em>boolean, string, number, array</em> or <em>object</em>) and its recommended to have a default value ( they will be initialized with it ).</li>
+</ul>
+
+<p><img src="/blog/images/creating-blocks-and-little-more/registerBlockType.jpeg" alt="registerBlockType" /></p>
+
+<ul>
+  <li><strong>edit:</strong> This is the function for the editors page. This function’s return is like render in React – renders the JSX. This also means that we can have “html” values in an array attribute and then render it on <strong>edit and/or save</strong> function (we will talk on this on the next follow up post). Changing the defined attributes is done with the function <strong>setAttributes</strong>, defined in the function’s arguments (this is like Reacts’ <strong>setState</strong>). But in order to use these attributes we need to include them in our function.</li>
+</ul>
+
+<p><img src="/blog/images/creating-blocks-and-little-more/edit.jpeg" alt="Edit function" /></p>
+
+<p>Then we need to define some function to be able to change the already defined attributes.</p>
+
+<p>Every component has:</p>
+
+<ul>
+  <li><strong>onChange/onSelect:</strong> they will be called every time we change/select some content of the component from the backend/editor. This function will be called with some argument and this argument is the current selected content ( text, image and etc.). We will take current argument and will pass it to our defined function, so we can change our main attributes.</li>
+  <li><strong>value:</strong> this is the current value of the component. We refer this value to the specific attribute we define. When we change this attribute, the value of the component also changes instantly. If you define the attribute with a default value, this value will be loaded in the component.</li>
+  <li><strong>className:</strong> this is for styles and refers to html’s class.</li>
+</ul>
+
+<p>To find the components used in Gutenberg and how they work, you can go <a href="https://github.com/WordPress/gutenberg/tree/master/packages/editor/src/components">here</a>.</p>
+
+<p>In <strong>save</strong>,things are more simple, we just need to take the attributes from function’s arguments and then render them with the <strong>return</strong> This function will be called every time you save your current work at the backend/editor.</p>
+
+<p><img src="/blog/images/creating-blocks-and-little-more/save.jpeg" alt="Save function" /></p>
+
+<p>There will be a follow up posts for how to advance our block with <strong><em>InspectorControls,PanelBody</em></strong> ( the Settings section in the editor)<em>, <strong>MediaUpload</strong> with mutiple pictures</em>, how to use jQuery in Gutenberg in general, how to work with objects and arrays as attributes, etc ) .</p>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      Theme crafted with &lt;3 by <a href="http://johnotander.com">John Otander</a> (<a href="https://twitter.com/4lpine">@4lpine</a>).<br>
+      &lt;/&gt; available on <a href="https://github.com/johnotander/pixyll">GitHub</a>.
+    </small>
+  </div>
+</footer>
+
+<script type="text/javascript">
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/blog/sw.js")
+    }
+</script>
+
+</body>
+</html>

@@ -8,6 +8,74 @@
     <atom:link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Creating Gutenberg blocks and a little more!</title>
+        <description>&lt;p&gt;First things first, we need to create a new block so we can understand how it works. To do that we need to have npm version &amp;gt;=5.2. New custom block means that we will create a new plugin that we can activate in the site’s WP homepage.&lt;/p&gt;
+
+&lt;h4 id=&quot;create-the-plugin&quot;&gt;&lt;strong&gt;Create the plugin&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;After we are done with the local installation of the project we need to go into localProject/wp-content/plugins/ with the terminal. Typing &lt;strong&gt;npx create-guten-block my-block&lt;/strong&gt; will create a custom block with the name “my-block”. Now we should activate the plugin from WP.&lt;/p&gt;
+
+&lt;h4 id=&quot;activate-the-plugin&quot;&gt;&lt;strong&gt;Activate the plugin&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;Activate the created plugin from the &lt;strong&gt;Plugins&lt;/strong&gt; section from WordPress side of your project.&lt;/p&gt;
+
+&lt;h4 id=&quot;runcompile-the-plugin&quot;&gt;&lt;strong&gt;Run/compile the plugin&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;After we are done with the &lt;strong&gt;installation&lt;/strong&gt; and &lt;strong&gt;activation&lt;/strong&gt; of the plugin, we need to run it. That is done with the command &lt;strong&gt;npm run start&lt;/strong&gt;. That will listen to changes in the plugin and will compile it on every change. After you are ready with all modifications and you need to push it to production, run the command &lt;strong&gt;npm run build&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;understanding-the-structure-of-the-blockplugin&quot;&gt;&lt;strong&gt;Understanding the structure of the block/plugin&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;First thing we need to do is to run &lt;strong&gt;npm run start&lt;/strong&gt; so that the npm will listen to our changes. This is what we should be able to see:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/creating-blocks-and-little-more/compiling.jpeg&quot; alt=&quot;Console in Compiling&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;NOTE: if you get this kind of error while working with your block, just remove the block from the already saved page, save it again and the error will be gone&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/creating-blocks-and-little-more/error.jpeg&quot; alt=&quot;Error whilw Compiling&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In src/block we have &lt;strong&gt;block.js, editor.scss and style.scss.&lt;/strong&gt; The &lt;strong&gt;editor.scss&lt;/strong&gt; is the style for the editors/backend page in WP, but the &lt;strong&gt;style.scss&lt;/strong&gt; is the style for &lt;strong&gt;both_ front-end_&lt;/strong&gt; page and &lt;em&gt;editor&lt;/em&gt;/backend page.&lt;/p&gt;
+
+&lt;p&gt;In block.js things get little bit confusing, but we will cover most of the stuff. We have one main function (&lt;strong&gt;registerBlockType&lt;/strong&gt;) with some arguments.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;title&lt;/strong&gt;: This is the name of the block we will see in the editors page&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;icon&lt;/strong&gt;: The icon we will see for this block if we want to change it from the default “shield” icon, we can go to &lt;a href=&quot;https://developer.wordpress.org/resource/dashicons/&quot;&gt;here&lt;/a&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt; Type the type of dashicon without the &lt;strong&gt;dashicon&lt;/strong&gt; word.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;category&lt;/strong&gt;:  In which section of the Gutenberg’s block we will find our custom one.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;attributes&lt;/strong&gt;: There are our variables that we will work with. They will be used to pass information from &lt;strong&gt;edit/backend&lt;/strong&gt; to &lt;strong&gt;save/frontend&lt;/strong&gt; functions/views. Every attribute should have type value (&lt;em&gt;boolean, string, number, array&lt;/em&gt; or &lt;em&gt;object&lt;/em&gt;) and its recommended to have a default value ( they will be initialized with it ).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/creating-blocks-and-little-more/registerBlockType.jpeg&quot; alt=&quot;registerBlockType&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;edit:&lt;/strong&gt; This is the function for the editors page. This function’s return is like render in React – renders the JSX. This also means that we can have “html” values in an array attribute and then render it on &lt;strong&gt;edit and/or save&lt;/strong&gt; function (we will talk on this on the next follow up post). Changing the defined attributes is done with the function &lt;strong&gt;setAttributes&lt;/strong&gt;, defined in the function’s arguments (this is like Reacts’ &lt;strong&gt;setState&lt;/strong&gt;). But in order to use these attributes we need to include them in our function.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/creating-blocks-and-little-more/edit.jpeg&quot; alt=&quot;Edit function&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then we need to define some function to be able to change the already defined attributes.&lt;/p&gt;
+
+&lt;p&gt;Every component has:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;onChange/onSelect:&lt;/strong&gt; they will be called every time we change/select some content of the component from the backend/editor. This function will be called with some argument and this argument is the current selected content ( text, image and etc.). We will take current argument and will pass it to our defined function, so we can change our main attributes.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;value:&lt;/strong&gt; this is the current value of the component. We refer this value to the specific attribute we define. When we change this attribute, the value of the component also changes instantly. If you define the attribute with a default value, this value will be loaded in the component.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;className:&lt;/strong&gt; this is for styles and refers to html’s class.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To find the components used in Gutenberg and how they work, you can go &lt;a href=&quot;https://github.com/WordPress/gutenberg/tree/master/packages/editor/src/components&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In &lt;strong&gt;save&lt;/strong&gt;,things are more simple, we just need to take the attributes from function’s arguments and then render them with the &lt;strong&gt;return&lt;/strong&gt; This function will be called every time you save your current work at the backend/editor.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/creating-blocks-and-little-more/save.jpeg&quot; alt=&quot;Save function&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There will be a follow up posts for how to advance our block with &lt;strong&gt;&lt;em&gt;InspectorControls,PanelBody&lt;/em&gt;&lt;/strong&gt; ( the Settings section in the editor)&lt;em&gt;, &lt;strong&gt;MediaUpload&lt;/strong&gt; with mutiple pictures&lt;/em&gt;, how to use jQuery in Gutenberg in general, how to work with objects and arrays as attributes, etc ) .&lt;/p&gt;
+</description>
+        <pubDate>Sun, 03 Mar 2019 19:48:10 +0200</pubDate>
+        <link>http://localhost:4000/blog/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/</guid>
+      </item>
+    
+      <item>
         <title>Welcome to Jekyll!</title>
         <description>&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
 

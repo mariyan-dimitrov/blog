@@ -20,7 +20,7 @@ If you're completely new to Jekyll, I recommend checking out the documentation a
 ```
 $ git clone git@github.com:johnotander/pixyll.git
 $ cd pixyll
-$ gem install bundler # If you don't have bundler installed
+$ gem install bundler # If you don't have bundler installed 
 $ bundle install
 ```
 
