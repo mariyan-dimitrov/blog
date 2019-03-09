@@ -4,23 +4,23 @@
     
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Creating Gutenberg blocks and a little more! &#8211; Advanced Custom Gutenberg Blocks</title>
+    <title>Creating Gutenberg blocks and a little more! &#8211; Mariyan Dimitrov</title>
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Tutorials about how to customise our custom Gutenberg blocks on advanced level.
+    <meta name="description" content="Personal blog for programming tips and tricks
 ">
     <meta name="robots" content="all">
     <meta name="author" content="">
     
     <meta name="keywords" content="gutenberg, blocks">
     <link rel="canonical" href="http://localhost:4000/blog/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/">
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Advanced Custom Gutenberg Blocks" href="/blog/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Mariyan Dimitrov" href="/blog/feed.xml" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/blog/css/pixyll.css?201903032353" type="text/css">
+    <link rel="stylesheet" href="/blog/css/pixyll.css?201903091636" type="text/css">
 
     <!-- Fonts -->
     
@@ -41,17 +41,17 @@
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Creating Gutenberg blocks and a little more!">
-    <meta property="og:description" content="Tutorials about how to customise our custom Gutenberg blocks on advanced level.
+    <meta property="og:description" content="Personal blog for programming tips and tricks
 ">
     <meta property="og:url" content="http://localhost:4000/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/">
-    <meta property="og:site_name" content="Advanced Custom Gutenberg Blocks">
+    <meta property="og:site_name" content="Mariyan Dimitrov">
     
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     
     <meta name="twitter:title" content="Creating Gutenberg blocks and a little more!" />
-    <meta name="twitter:description" content="Tutorials about how to customise our custom Gutenberg blocks on advanced level.
+    <meta name="twitter:description" content="Personal blog for programming tips and tricks
 " />
     <meta name="twitter:url" content="http://localhost:4000/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/" />
     
@@ -84,7 +84,7 @@
     <header class="site-header px2 px-responsive">
   <div class="mt2 wrap">
     <div class="measure">
-      <a href="/blog/" class="site-title">Advanced Custom Gutenberg Blocks</a>
+      <a href="/blog/" class="site-title">Mariyan Dimitrov</a>
       <nav class="site-nav">
         
 
@@ -94,7 +94,7 @@
     
     
     
-        <a class="nav-link" href="/blog/about/">About Pixyll</a>
+        <a class="nav-link" href="/blog/about/">About me</a>
     
 
     
@@ -128,17 +128,17 @@
   
   <span class="post-meta small">
   
-    4 minute read
+    6 minute read
   
   </span>
 </div>
 
 <article class="post-content">
-  <p>First things first, we need to create a new block so we can understand how it works. To do that we need to have npm version &gt;=5.2. New custom block means that we will create a new plugin that we can activate in the site’s WP homepage.</p>
+  <p>First things first, we need to create a new block so we can understand how it works. To do that, we need to have npm version &gt;=5.2. New custom block means that we will create a new plugin that we can activate in the site’s WP homepage.</p>
 
 <h4 id="create-the-plugin"><strong>Create the plugin</strong></h4>
 
-<p>After we are done with the local installation of the project we need to go into localProject/wp-content/plugins/ with the terminal. Typing <strong>npx create-guten-block my-block</strong> will create a custom block with the name “my-block”. Now we should activate the plugin from WP.</p>
+<p>After the local installation of the project we need to go into localProject/wp-content/plugins/ with the terminal. Typing <strong>npx create-guten-block my-block</strong> will create a custom block with the name “my-block”. Now, we should activate the plugin from WP.</p>
 
 <h4 id="activate-the-plugin"><strong>Activate the plugin</strong></h4>
 
@@ -146,7 +146,7 @@
 
 <h4 id="runcompile-the-plugin"><strong>Run/compile the plugin</strong></h4>
 
-<p>After we are done with the <strong>installation</strong> and <strong>activation</strong> of the plugin, we need to run it. That is done with the command <strong>npm run start</strong>. That will listen to changes in the plugin and will compile it on every change. After you are ready with all modifications and you need to push it to production, run the command <strong>npm run build</strong>.</p>
+<p>After we are done with the <strong>installation</strong> and <strong>activation</strong> of the plugin, we need to run it. That is done with the command <strong>npm run start</strong>. That will listen to changes in the plugin and will compile it on every change/save. After you are ready with all modifications and you need is to push it to production, run the command <strong>npm run build</strong>.</p>
 
 <h4 id="understanding-the-structure-of-the-blockplugin"><strong>Understanding the structure of the block/plugin</strong></h4>
 
@@ -169,20 +169,110 @@
   <li><strong>attributes</strong>: There are our variables that we will work with. They will be used to pass information from <strong>edit/backend</strong> to <strong>save/frontend</strong> functions/views. Every attribute should have type value (<em>boolean, string, number, array</em> or <em>object</em>) and its recommended to have a default value ( they will be initialized with it ).</li>
 </ul>
 
-<p><img src="/blog/images/creating-blocks-and-little-more/registerBlockType.jpeg" alt="registerBlockType" /></p>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Register: aa Gutenberg Block.
+ *
+ * Registers a new block provided a unique name and an object defining its
+ * behavior. Once registered, the block is made editor as an option to any
+ * editor interface where blocks are implemented.
+ *
+ * @link https://wordpress.org/gutenberg/handbook/block-api/
+ * @param  {string}   name     Block name.
+ * @param  {Object}   settings Block settings.
+ * @return {?WPBlock}          The block, if it has been successfully
+ *                             registered; otherwise `undefined`.
+ */</span>
+<span class="nx">registerBlockType</span><span class="p">(</span><span class="s1">'cgb/block-member-short-bio'</span><span class="p">,</span> <span class="p">{</span>
+	<span class="c1">// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.</span>
+	<span class="na">title</span><span class="p">:</span> <span class="nx">__</span><span class="p">(</span><span class="s1">'Member Short Bio'</span><span class="p">),</span> <span class="c1">// Block title.</span>
+	<span class="na">icon</span><span class="p">:</span> <span class="s1">'admin-users'</span><span class="p">,</span> <span class="c1">// Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.</span>
+	<span class="na">category</span><span class="p">:</span> <span class="s1">'common'</span><span class="p">,</span> <span class="c1">// Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.</span>
+	<span class="na">keywords</span><span class="p">:</span> <span class="p">[</span>
+		<span class="nx">__</span><span class="p">(</span><span class="s1">'my-block — CGB Block'</span><span class="p">),</span>
+		<span class="nx">__</span><span class="p">(</span><span class="s1">'CGB Example'</span><span class="p">),</span>
+		<span class="nx">__</span><span class="p">(</span><span class="s1">'create-guten-block'</span><span class="p">),</span>
+	<span class="p">],</span>
+	<span class="na">attributes</span><span class="p">:</span> <span class="p">{</span>
+		<span class="na">names</span><span class="p">:</span> <span class="p">{</span>
+			<span class="na">type</span><span class="p">:</span> <span class="s1">'string'</span><span class="p">,</span>
+		<span class="p">},</span>
+		<span class="na">position</span><span class="p">:</span> <span class="p">{</span>
+			<span class="na">type</span><span class="p">:</span> <span class="s1">'string'</span><span class="p">,</span>
+		<span class="p">},</span>
+		<span class="na">mediaID</span><span class="p">:</span> <span class="p">{</span>
+			<span class="na">type</span><span class="p">:</span> <span class="s1">'number'</span><span class="p">,</span>
+		<span class="p">},</span>
+		<span class="na">mediaURL</span><span class="p">:</span> <span class="p">{</span>
+			<span class="na">type</span><span class="p">:</span> <span class="s1">'string'</span><span class="p">,</span>
+			<span class="na">source</span><span class="p">:</span> <span class="s1">'attribute'</span><span class="p">,</span>
+			<span class="na">selector</span><span class="p">:</span> <span class="s1">'img'</span><span class="p">,</span>
+			<span class="na">attribute</span><span class="p">:</span> <span class="s1">'src'</span><span class="p">,</span>
+		<span class="p">},</span>
+	<span class="p">},</span>
+</code></pre></div></div>
 
 <ul>
   <li><strong>edit:</strong> This is the function for the editors page. This function’s return is like render in React – renders the JSX. This also means that we can have “html” values in an array attribute and then render it on <strong>edit and/or save</strong> function (we will talk on this on the next follow up post). Changing the defined attributes is done with the function <strong>setAttributes</strong>, defined in the function’s arguments (this is like Reacts’ <strong>setState</strong>). But in order to use these attributes we need to include them in our function.</li>
 </ul>
 
-<p><img src="/blog/images/creating-blocks-and-little-more/edit.jpeg" alt="Edit function" /></p>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * The edit function describes the structure of your block in the context of the editor.
+ * This represents what the editor will render when the block is used.
+ *
+ * The "edit" property must be a valid function.
+ *
+ * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
+ */</span>
+<span class="nx">edit</span><span class="p">:</span> <span class="p">({</span> <span class="nx">attributes</span><span class="p">,</span> <span class="nx">setAttributes</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+	<span class="kd">const</span> <span class="p">{</span> <span class="nx">mediaID</span><span class="p">,</span> <span class="nx">mediaURL</span><span class="p">,</span> <span class="nx">names</span><span class="p">,</span> <span class="nx">position</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">;</span>
+	<span class="kd">const</span> <span class="nx">onSelectImage</span> <span class="o">=</span> <span class="nx">media</span> <span class="o">=&gt;</span> <span class="p">{</span>
+		<span class="nx">setAttributes</span><span class="p">({</span>
+			<span class="na">mediaURL</span><span class="p">:</span> <span class="nx">media</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span>
+			<span class="na">mediaID</span><span class="p">:</span> <span class="nx">media</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+		<span class="p">});</span>
+	<span class="p">};</span>
+	<span class="kd">const</span> <span class="nx">onNamesChange</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">=&gt;</span> <span class="p">{</span>
+		<span class="nx">setAttributes</span><span class="p">({</span> <span class="na">names</span><span class="p">:</span> <span class="nx">value</span> <span class="p">})</span>
+	<span class="p">}</span>
+	<span class="kd">const</span> <span class="nx">onPositionChange</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">=&gt;</span> <span class="p">{</span>
+		<span class="nx">setAttributes</span><span class="p">({</span> <span class="na">position</span><span class="p">:</span> <span class="nx">value</span> <span class="p">})</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="p">(</span>
+		<span class="p">&lt;</span><span class="nt">div</span> <span class="na">className=</span><span class="s2">"createMemberIntro"</span><span class="p">&gt;</span>
+			<span class="p">&lt;</span><span class="nc">MediaUpload</span>
+				<span class="na">onSelect=</span><span class="si">{</span><span class="nx">onSelectImage</span><span class="si">}</span>
+				<span class="na">type=</span><span class="s2">"image"</span>
+				<span class="na">value=</span><span class="si">{</span><span class="nx">mediaID</span><span class="si">}</span>
+				<span class="na">render=</span><span class="si">{</span><span class="p">({</span> <span class="nx">open</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+					<span class="p">&lt;</span><span class="nc">Button</span> <span class="na">className=</span><span class="si">{</span><span class="nx">mediaID</span> <span class="p">?</span> <span class="s1">'image-button'</span> <span class="p">:</span> <span class="s1">'button button-large'</span><span class="si">}</span> <span class="na">onClick=</span><span class="si">{</span><span class="nx">open</span><span class="si">}</span><span class="p">&gt;</span>
+						<span class="si">{</span><span class="o">!</span><span class="nx">mediaID</span> <span class="p">?</span> <span class="nx">__</span><span class="p">(</span><span class="s1">'Upload Image'</span><span class="p">)</span> <span class="p">:</span> <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src=</span><span class="si">{</span><span class="nx">mediaURL</span><span class="si">}</span> <span class="p">/&gt;</span><span class="si">}</span>
+					<span class="p">&lt;/</span><span class="nc">Button</span><span class="p">&gt;</span>
+				<span class="p">)</span><span class="si">}</span>
+			<span class="p">/&gt;</span>
+			<span class="p">&lt;</span><span class="nc">RichText</span>
+				<span class="na">tagName=</span><span class="s2">"strong"</span>
+				<span class="na">placeholder=</span><span class="si">{</span><span class="nx">__</span><span class="p">(</span><span class="s1">'Type Names here...'</span><span class="p">)</span><span class="si">}</span>
+				<span class="na">value=</span><span class="si">{</span><span class="nx">names</span><span class="si">}</span>
+				<span class="na">onChange=</span><span class="si">{</span><span class="nx">onNamesChange</span><span class="si">}</span>
+			<span class="p">/&gt;</span>
+			<span class="p">&lt;</span><span class="nc">RichText</span>
+				<span class="na">tagName=</span><span class="s2">"span"</span>
+				<span class="na">placeholder=</span><span class="si">{</span><span class="nx">__</span><span class="p">(</span><span class="s1">'Type Position here...'</span><span class="p">)</span><span class="si">}</span>
+				<span class="na">value=</span><span class="si">{</span><span class="nx">position</span><span class="si">}</span>
+				<span class="na">onChange=</span><span class="si">{</span><span class="nx">onPositionChange</span><span class="si">}</span>
+			<span class="p">/&gt;</span>
+			
+		<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+	<span class="p">);</span>
+<span class="p">},</span>
+</code></pre></div></div>
 
 <p>Then we need to define some function to be able to change the already defined attributes.</p>
 
 <p>Every component has:</p>
 
 <ul>
-  <li><strong>onChange/onSelect:</strong> they will be called every time we change/select some content of the component from the backend/editor. This function will be called with some argument and this argument is the current selected content ( text, image and etc.). We will take current argument and will pass it to our defined function, so we can change our main attributes.</li>
+  <li><strong>onChange/onSelect:</strong> they will be called every time we change/select some content of the component from the backend/editor. This function will be called with some argument and this argument is the current selected content ( text, image and etc.). We will take current argument and will pass it to our defined function so we can change our main attributes.</li>
   <li><strong>value:</strong> this is the current value of the component. We refer this value to the specific attribute we define. When we change this attribute, the value of the component also changes instantly. If you define the attribute with a default value, this value will be loaded in the component.</li>
   <li><strong>className:</strong> this is for styles and refers to html’s class.</li>
 </ul>
@@ -191,7 +281,39 @@
 
 <p>In <strong>save</strong>,things are more simple, we just need to take the attributes from function’s arguments and then render them with the <strong>return</strong> This function will be called every time you save your current work at the backend/editor.</p>
 
-<p><img src="/blog/images/creating-blocks-and-little-more/save.jpeg" alt="Save function" /></p>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * The save function defines the way in which the different attributes should be combined
+ * into the final markup, which is then serialized by Gutenberg into post_content.
+ *
+ * The "save" property must be specified and must be a valid function.
+ *
+ * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
+ */</span>
+<span class="nx">save</span><span class="p">:</span>  <span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+	<span class="kd">const</span> <span class="p">{</span>
+		<span class="na">attributes</span><span class="p">:</span> <span class="p">{</span>
+			<span class="nx">names</span><span class="p">,</span>
+			<span class="nx">position</span><span class="p">,</span>
+			<span class="nx">mediaID</span><span class="p">,</span>
+			<span class="nx">mediaURL</span>
+			
+		<span class="p">}</span>
+	<span class="p">}</span> <span class="o">=</span> <span class="nx">props</span><span class="p">;</span>
+	<span class="k">return</span> <span class="p">(</span>
+		<span class="p">&lt;</span><span class="nt">div</span> <span class="na">className=</span><span class="s2">"dx-team-member"</span><span class="p">&gt;</span>
+			<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href=</span><span class="si">{</span><span class="s2">"http://devrix.com/about/team/"</span><span class="o">+</span><span class="nx">names</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">()</span><span class="si">}</span><span class="p">&gt;</span>
+				<span class="si">{</span>
+					<span class="nx">mediaURL</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+						<span class="p">&lt;</span> <span class="nt">img</span> <span class="na">className=</span><span class="si">{</span><span class="s2">"size-full wp-image-"</span> <span class="o">+</span> <span class="nx">mediaID</span><span class="si">}</span> <span class="na">src=</span><span class="si">{</span><span class="nx">mediaURL</span><span class="si">}</span> <span class="na">alt=</span><span class="si">{</span><span class="s2">"team-"</span> <span class="o">+</span> <span class="nx">names</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">()</span><span class="si">}</span> 
+						<span class="na">width=</span><span class="s2">"168"</span> <span class="na">height=</span><span class="s2">"168"</span> <span class="nt">data</span><span class="err">-</span><span class="nt">wp</span><span class="err">-</span><span class="na">pid=</span><span class="si">{</span><span class="nx">mediaID</span><span class="si">}</span> <span class="p">/&gt;</span>
+					<span class="p">)</span>
+				<span class="si">}</span>
+			<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+			<span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">names</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
+			<span class="si">{</span><span class="nx">position</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+	<span class="p">);</span>
+<span class="p">},</span>
+</code></pre></div></div>
 
 <p>There will be a follow up posts for how to advance our block with <strong><em>InspectorControls,PanelBody</em></strong> ( the Settings section in the editor)<em>, <strong>MediaUpload</strong> with mutiple pictures</em>, how to use jQuery in Gutenberg in general, how to work with objects and arrays as attributes, etc ) .</p>
 
@@ -214,8 +336,8 @@
   <footer class="center">
   <div class="measure">
     <small>
-      Theme crafted with &lt;3 by <a href="http://johnotander.com">John Otander</a> (<a href="https://twitter.com/4lpine">@4lpine</a>).<br>
-      &lt;/&gt; available on <a href="https://github.com/johnotander/pixyll">GitHub</a>.
+      Blog writen by <a href="http://johnotander.com">Mariyan Dimitrov</a> (<a href="https://www.linkedin.com/in/mariyan-dimitrov-562b21160/">@LinkedIn</a>).<br>
+      &lt;/&gt; available on <a href="https://github.com/mariyan-dimitrov/">GitHub</a>.
     </small>
   </div>
 </footer>

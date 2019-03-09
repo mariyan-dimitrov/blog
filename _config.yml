@@ -6,10 +6,10 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Advanced Custom Gutenberg Blocks
+title: Mariyan Dimitrov
 email: mariyan_dimitrov@yahoo.com
 description: > # this means to ignore newlines until "baseurl:"
-  Tutorials about how to customise our custom Gutenberg blocks on advanced level.
+  Personal blog for programming tips and tricks
 destination: docs
 baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site
@@ -23,6 +23,7 @@ github_username:  mariyan-dimitrov
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 # Google services
 google_verification:
 # Use either direct GA implementation or set up GTM account
