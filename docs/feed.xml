@@ -4,8 +4,100 @@
     <title>Mariyan Dimitrov</title>
     <description>Personal blog for programming tips and tricks
 </description>
-    <link>http://localhost:4000/blog/</link>
-    <atom:link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <link>/blog/</link>
+    <atom:link href="/blog/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Creating a simple chrome extention</title>
+        <description>&lt;p&gt;Chrome extentions are very easy ways to manipulate pages the way we want. We can also extent the functonality of a page/s by writing a custom extention that will do the things we need. To start things off, we need to understand how can we setup the baseline of our extention codebase.&lt;/p&gt;
+
+&lt;h2 id=&quot;chrome-extention-baseline&quot;&gt;Chrome Extention baseline&lt;/h2&gt;
+&lt;p&gt;Let’s say we have a piece of code that needs to be runned in a page, but under an extention. How can we tell the browser that this is an extention and we need to import it. Well, to describe as fully as I can the idea about that I will show mine &lt;a href=&quot;https://github.com/mariyan-dimitrov/Cool-Asana-Extention&quot;&gt;extention&lt;/a&gt; for &lt;a href=&quot;https://app.asana.com/&quot;&gt;Asana&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;file-structure&quot;&gt;File structure&lt;/h2&gt;
+
+&lt;h3 id=&quot;manifestjson---what-does-it-do-and-what-should-we-write-in-it&quot;&gt;Manifest.json - what does it do and what should we write in it&lt;/h3&gt;
+
+&lt;p&gt;Basically, the manifest.json file is our config file from which the browser loads different permissions and resources. We also point out to the browser what version we are loading, the extension’s name, author and description, which can be viewed from the browser when the extension is loaded properly.&lt;/p&gt;
+
+&lt;p&gt;First we need to create a &lt;em&gt;manifest.json&lt;/em&gt; file and add these lines of code into it:&lt;/p&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;DX Asana Goodies&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Mariyan Dimitrov &amp;amp; Martin Spatovaliyski&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Extention for the cool teammates!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;manifest_version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;web_accessible_resources&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;resources/**&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;content_scripts&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;jQuery.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;popup.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;css&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;style.css&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;matches&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://app.asana.com/*&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;default_icon&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;16&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;img/16.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;32&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;img/32.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;128&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;img/128.png&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;icons&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;16&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;images/salimeyes16.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;32&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;images/salimeyes32.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;48&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;images/salimeyes48.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;128&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;images/salimeyes128.png&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;importing-extension-icon&quot;&gt;Importing extension icon&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;default_icon&lt;/strong&gt; - this property is responsible for the icon the user sees in his extension toolbar when the estension is active.
+&lt;strong&gt;icons&lt;/strong&gt; - this is the property responsible for the icon the user sees when he access the &lt;strong&gt;Chrome extentions&lt;/strong&gt; page and importing our plugin.&lt;/p&gt;
+
+&lt;h3 id=&quot;content_scripts---loading-all-assets-in-our-extension&quot;&gt;content_scripts - loading all assets in our extension&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;js/css&lt;/strong&gt; - All styles and scripts that can be included: the order of loading the scripts will be followed by the order of the scripts ( as described, we want jQuery to load first and our custom JavaScript second).
+&lt;strong&gt;matches&lt;/strong&gt; - For which website should the resources be loaded.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;content_scripts&lt;/strong&gt; will start loading as soon as a match is found from the &lt;strong&gt;matches&lt;/strong&gt; array. In our case, this will be loaded only in app.asana.com. One thing to be noted though, the JavaScript files are loaded on &lt;code class=&quot;highlighter-rouge&quot;&gt;interactive/DOM&lt;/code&gt; ready state.&lt;/p&gt;
+
+&lt;h3 id=&quot;accessible-resources---where-should-we-store-our-mp3-pictures-and-etc&quot;&gt;Accessible resources - where should we store our mp3, pictures and etc.&lt;/h3&gt;
+&lt;p&gt;Sometimes we want our extention to load some pictures, mp3 files or any other type of files. To have access to them, we need to tell the manifest.json file that these files are actually there and can be used. We do that by adding this piece of code in our json file. By using &lt;code class=&quot;highlighter-rouge&quot;&gt;**&lt;/code&gt;, we are currently telling our extension to look for all files in &lt;code class=&quot;highlighter-rouge&quot;&gt;resources&lt;/code&gt; folder recursively.&lt;/p&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;web_accessible_resources&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;resources/**&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Next step is to use the linked resources and that is done by using the function &lt;code class=&quot;highlighter-rouge&quot;&gt;chrome.extension.getURL();&lt;/code&gt;. In our case we could actually assign the mp3 file into a variable and then use it later on like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;musicURL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;chrome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;extension&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/resources/'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;memeName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/music.mp3'&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;music&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Audio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;musicURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;music&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;play&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;loading-the-created-extension&quot;&gt;Loading the created extension&lt;/h3&gt;
+&lt;p&gt;When we start developing our extension, we need to include it in our browser and see how does it behaves when we are writing lines of code. To do that we need to follow these steps:
+1) Open the &lt;strong&gt;Extension Manager&lt;/strong&gt; page by going to &lt;strong&gt;chrome://extensions&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;You can also open it by clicking on the Chrome menu, hovering over More Tools then selecting Extensions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;2) Enable Developer Mode by clicking the toggle switch next to Developer mode.&lt;/p&gt;
+
+&lt;p&gt;3) Click the &lt;code class=&quot;highlighter-rouge&quot;&gt;Load unpacked&lt;/code&gt; button located in the top left corner of our window and select the extension’s folder.&lt;/p&gt;
+
+&lt;p&gt;4) Activate yout extension by clicking on the toggle button on the bottom right corner of your extension card.&lt;/p&gt;
+&lt;h3 id=&quot;debugging-the-loaded-extension&quot;&gt;Debugging the loaded extension&lt;/h3&gt;
+&lt;p&gt;When your extension up and running we need to debug it. We need to reload the extension every time when we do a change, speciialy when we change the &lt;strong&gt;manifest.json&lt;/strong&gt; file. That way, we are changing how the whole extension should behave and what resources should be loaded within it, that’s why we need to reload it. For easier debugging, Google is thoughfull enough to create an functionality to reload the extension on the go by clicking the circular arrow on the bottom right corner of our extension card in &lt;strong&gt;chrome://extensions&lt;/strong&gt;. Many time through our work, we will make mistakes and we need to learn from them. All of the errors (following this implementation) will be logged in the console of your browser. At the sametime however, our Chrome browser will keep a backlog with all errors that were throwed before.&lt;/p&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://developer.chrome.com/extensions/background_pages&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Mon, 07 Oct 2019 01:34:10 +0300</pubDate>
+        <link>/blog/chrome/extentions/2019/10/07/creating-simple-chrome-extention/</link>
+        <guid isPermaLink="true">/blog/chrome/extentions/2019/10/07/creating-simple-chrome-extention/</guid>
+      </item>
     
       <item>
         <title>Creating Gutenberg blocks and a little more!</title>
@@ -193,8 +285,8 @@
 &lt;p&gt;There will be a follow up posts for how to advance our block with &lt;strong&gt;&lt;em&gt;InspectorControls,PanelBody&lt;/em&gt;&lt;/strong&gt; ( the Settings section in the editor)&lt;em&gt;, &lt;strong&gt;MediaUpload&lt;/strong&gt; with mutiple pictures&lt;/em&gt;, how to use jQuery in Gutenberg in general, how to work with objects and arrays as attributes, etc ) .&lt;/p&gt;
 </description>
         <pubDate>Sun, 03 Mar 2019 19:48:10 +0200</pubDate>
-        <link>http://localhost:4000/blog/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/</guid>
+        <link>/blog/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/</link>
+        <guid isPermaLink="true">/blog/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/</guid>
       </item>
     
   </channel>

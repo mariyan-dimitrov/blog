@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/blog/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/</loc>
+<loc>/blog/gutenberg/blocks/2019/03/03/creating-blocks-and-little-more/</loc>
 <lastmod>2019-03-03T19:48:10+02:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/blog/about/</loc>
+<loc>/blog/chrome/extentions/2019/10/07/creating-simple-chrome-extention/</loc>
+<lastmod>2019-10-07T01:34:10+03:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/blog/contact/</loc>
+<loc>/blog/about/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/blog/</loc>
+<loc>/blog/contact/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/blog/thanks/</loc>
+<loc>/blog/</loc>
+</url>
+<url>
+<loc>/blog/thanks/</loc>
 </url>
 </urlset>
