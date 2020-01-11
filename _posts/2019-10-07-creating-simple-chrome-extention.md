@@ -43,11 +43,16 @@ First, you need to create a manifest.json file. What does this file do and what 
 To start developing your extension you need to include it in your browser and see how it behaves when you are writing lines of code. To do that, follow these steps:
 * Open the Extension Manager page by going to this link – chrome://extensions/.
 * Enable Developer Mode by clicking the toggle switch next to Developer mode at the top right side of your screen.
+
 ![This is my Chrome using dark mode in page chrome://extensions/]({{site.baseurl}}/images/creating-simple-chrome-extension/developer_mode.png)
+
 * Click the Load unpacked button located in the top left corner of our window and select the extension’s folder.
+
 ![This is my Chrome using dark mode in page chrome://extensions/]({{site.baseurl}}/images/creating-simple-chrome-extension/load_unpacked.png)
+
 * Select the folder in which your manifest.json file is in.
 * If you selected the correct folder, you will see that extension’s card and the only thing that’s needed here is to activate it by clicking on the toggle button on the bottom right corner of your extension card.
+
 ![This is my Chrome using dark mode in page chrome://extensions/]({{site.baseurl}}/images/creating-simple-chrome-extension/extension_card.png)
 
 ### 2. “content_scripts” – Loading All Assets in Your Extension
@@ -88,7 +93,9 @@ music.play();
 When you start developing your extension, you will need to know where all of the errors (following/changing this implementation) will be logged. Chrome browser will keep a backlog with all the errors in the extension’s card ( button “Errors” ).
 ### Wrapping it up
 You can find the other files’ content and here is how the whole extension’s structure looks like:
+
 ![This is my VS Code using dark mode]({{site.baseurl}}/images/creating-simple-chrome-extension/file_structure.png)
+
 You can find the whole project at this [GitHub repo](https://github.com/mariyan-dimitrov/dank-customizer-extension-asana).
 
 ### Further FAQ

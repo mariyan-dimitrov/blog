@@ -47,14 +47,23 @@
 &lt;p&gt;To start developing your extension you need to include it in your browser and see how it behaves when you are writing lines of code. To do that, follow these steps:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Open the Extension Manager page by going to this link – chrome://extensions/.&lt;/li&gt;
-  &lt;li&gt;Enable Developer Mode by clicking the toggle switch next to Developer mode at the top right side of your screen.
-&lt;img src=&quot;/blog/images/creating-simple-chrome-extension/developer_mode.png&quot; alt=&quot;This is my Chrome using dark mode in page chrome://extensions/&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Click the Load unpacked button located in the top left corner of our window and select the extension’s folder.
-&lt;img src=&quot;/blog/images/creating-simple-chrome-extension/load_unpacked.png&quot; alt=&quot;This is my Chrome using dark mode in page chrome://extensions/&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Select the folder in which your manifest.json file is in.&lt;/li&gt;
-  &lt;li&gt;If you selected the correct folder, you will see that extension’s card and the only thing that’s needed here is to activate it by clicking on the toggle button on the bottom right corner of your extension card.
-&lt;img src=&quot;/blog/images/creating-simple-chrome-extension/extension_card.png&quot; alt=&quot;This is my Chrome using dark mode in page chrome://extensions/&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Enable Developer Mode by clicking the toggle switch next to Developer mode at the top right side of your screen.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/creating-simple-chrome-extension/developer_mode.png&quot; alt=&quot;This is my Chrome using dark mode in page chrome://extensions/&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Click the Load unpacked button located in the top left corner of our window and select the extension’s folder.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/creating-simple-chrome-extension/load_unpacked.png&quot; alt=&quot;This is my Chrome using dark mode in page chrome://extensions/&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Select the folder in which your manifest.json file is in.&lt;/li&gt;
+  &lt;li&gt;If you selected the correct folder, you will see that extension’s card and the only thing that’s needed here is to activate it by clicking on the toggle button on the bottom right corner of your extension card.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/creating-simple-chrome-extension/extension_card.png&quot; alt=&quot;This is my Chrome using dark mode in page chrome://extensions/&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;2-content_scripts--loading-all-assets-in-your-extension&quot;&gt;2. “content_scripts” – Loading All Assets in Your Extension&lt;/h3&gt;
 &lt;p&gt;The extension can also load custom assets as JavaScript and CSS and they should be added as:
@@ -90,9 +99,11 @@ This is my Chrome using dark mode and this is my extension’s card.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;When you start developing your extension, you will need to know where all of the errors (following/changing this implementation) will be logged. Chrome browser will keep a backlog with all the errors in the extension’s card ( button “Errors” ).&lt;/p&gt;
 &lt;h3 id=&quot;wrapping-it-up&quot;&gt;Wrapping it up&lt;/h3&gt;
-&lt;p&gt;You can find the other files’ content and here is how the whole extension’s structure looks like:
-&lt;img src=&quot;/blog/images/creating-simple-chrome-extension/file_structure.png&quot; alt=&quot;This is my VS Code using dark mode&quot; /&gt;
-You can find the whole project at this &lt;a href=&quot;https://github.com/mariyan-dimitrov/dank-customizer-extension-asana&quot;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can find the other files’ content and here is how the whole extension’s structure looks like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/creating-simple-chrome-extension/file_structure.png&quot; alt=&quot;This is my VS Code using dark mode&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can find the whole project at this &lt;a href=&quot;https://github.com/mariyan-dimitrov/dank-customizer-extension-asana&quot;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;further-faq&quot;&gt;Further FAQ&lt;/h3&gt;
 &lt;p&gt;Do I need Google / Chrome permission to run an extension? – No. These are custom extensions that we run locally. It is like changing the HTML of a site locally. It is not violating any rules.

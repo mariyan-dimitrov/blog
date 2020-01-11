@@ -19,7 +19,7 @@ header_pages:
  - contact.html
 
 twitter_username: ""
-github_username:  mariyan-dimitrov
+github_username: mariyan-dimitrov
 
 # Build settings
 markdown: kramdown
