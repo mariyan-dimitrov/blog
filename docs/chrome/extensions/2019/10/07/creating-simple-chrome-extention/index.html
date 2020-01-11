@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Creating a simple chrome extension &#8211; Mariyan Dimitrov</title>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal blog for programming tips and tricks
+">
+    <meta name="robots" content="all">
+    <meta name="author" content="">
+    
+    <meta name="keywords" content="chrome, extensions">
+    <link rel="canonical" href="/blog/chrome/extensions/2019/10/07/creating-simple-chrome-extention/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Mariyan Dimitrov" href="/blog/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/pixyll.css?202001111753" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+    
+
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Creating a simple chrome extension">
+    <meta property="og:description" content="Personal blog for programming tips and tricks
+">
+    <meta property="og:url" content="/chrome/extensions/2019/10/07/creating-simple-chrome-extention/">
+    <meta property="og:site_name" content="Mariyan Dimitrov">
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="Creating a simple chrome extension" />
+    <meta name="twitter:description" content="Personal blog for programming tips and tricks
+" />
+    <meta name="twitter:url" content="/chrome/extensions/2019/10/07/creating-simple-chrome-extention/" />
+    
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/blog/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/blog/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/blog/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/blog/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/blog/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/blog/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/blog/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/blog/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/blog/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/blog/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/blog/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/blog/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/blog/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+
+    
+</head>
+
+<body class="site">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/blog/" class="site-title">Mariyan Dimitrov</a>
+      <nav class="site-nav">
+        
+
+
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/about/">About me</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/contact/">Say Hello</a>
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Creating a simple chrome extension</h1>
+  <span class="post-meta">Oct 7, 2019</span><br>
+  
+  <span class="post-meta small">
+  
+    6 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <h2 id="how-to-create-your-first-chrome-extension--v2">How to Create Your First Chrome Extension -v2</h2>
+<p>Chrome extensions are small programs that will customize your browsing experience. This short guide will help you understand and create a nice and simple file structure for the Chrome extension.</p>
+
+<h3 id="chrome-extension-baseline">Chrome Extension Baseline</h3>
+<p>Chrome extensions are used to manipulate pages, extract additional data, intercept some HTTP requests and etc. Here, only your imagination is your boundary.</p>
+
+<p>To start things off, you need to understand how to set up the baseline of your extension codebase. For an easier start, here is the official overview from Chrome: https://developer.chrome.com/extensions/overview.</p>
+
+<p>I started using extensions when I wanted to customize my experience in any site, in my case – Asana. By default, Asana shows up a unicorn when I complete a task and I wanted to replace that with something that will cheer me up when I do something. That’s why I created an extension that is replacing the default animations with some memes.</p>
+
+<p>Let say you have your code ready as an extension, but how can you tell the browser that this is your extension and it needs to be imported? To fully describe how extensions work, let’s see an example with an extension for Asana.</p>
+
+<h2 id="file-structure">File Structure</h2>
+
+<h3 id="1-manifestjson-file">1. Manifest.json File</h3>
+<p>First, you need to create a manifest.json file. What does this file do and what should you write in it? Basically, the manifest.json file in our config file is how the browser loads different permissions and resources. With this file, you point out to the browser that this is an extension, what version it is, its name, author, description, assets, and etc. Here is an example of how a simple manifest.json file should look.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+     </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DX Asana Goodies"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.1"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mariyan Dimitrov &amp; Martin Spatovaliyski"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"extension for the cool teammates!"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"manifest_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"web_accessible_resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+         </span><span class="s2">"resources/**"</span><span class="w">
+     </span><span class="p">],</span><span class="w">
+     </span><span class="nl">"content_scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+         </span><span class="nl">"js"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"jQuery.js"</span><span class="p">,</span><span class="w"> </span><span class="s2">"popup.js"</span><span class="p">],</span><span class="w">
+         </span><span class="nl">"css"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"style.css"</span><span class="p">],</span><span class="w">
+         </span><span class="nl">"matches"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"https://app.asana.com/*"</span><span class="w"> </span><span class="p">]</span><span class="w">
+     </span><span class="p">}],</span><span class="w">
+     </span><span class="nl">"icons"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"128"</span><span class="p">:</span><span class="w"> </span><span class="s2">"img/128.png"</span><span class="w"> 
+ 	</span><span class="p">}</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>To start developing your extension you need to include it in your browser and see how it behaves when you are writing lines of code. To do that, follow these steps:</p>
+<ul>
+  <li>Open the Extension Manager page by going to this link – chrome://extensions/.</li>
+  <li>Enable Developer Mode by clicking the toggle switch next to Developer mode at the top right side of your screen.
+<img src="/blog/images/creating-simple-chrome-extension/developer_mode.png" alt="This is my Chrome using dark mode in page chrome://extensions/" /></li>
+  <li>Click the Load unpacked button located in the top left corner of our window and select the extension’s folder.
+<img src="/blog/images/creating-simple-chrome-extension/load_unpacked.png" alt="This is my Chrome using dark mode in page chrome://extensions/" /></li>
+  <li>Select the folder in which your manifest.json file is in.</li>
+  <li>If you selected the correct folder, you will see that extension’s card and the only thing that’s needed here is to activate it by clicking on the toggle button on the bottom right corner of your extension card.
+<img src="/blog/images/creating-simple-chrome-extension/extension_card.png" alt="This is my Chrome using dark mode in page chrome://extensions/" /></li>
+</ul>
+
+<h3 id="2-content_scripts--loading-all-assets-in-your-extension">2. “content_scripts” – Loading All Assets in Your Extension</h3>
+<p>The extension can also load custom assets as JavaScript and CSS and they should be added as:
+<strong>js/css</strong> – All styles and scripts that can be included: the order of loading the scripts will be followed by the order of the scripts (as described, we want jQuery to load first and our custom JavaScript second).
+matches – Here you specify for which website(s) the resources should be loaded.
+The <strong>content_scripts</strong> will start loading as soon as a match is found from the matches array. In our example, this will be loaded only on https://asana.com. One thing to be noted though, the JavaScript files are loaded on interactive/DOM ready state.</p>
+
+<p>Here is a simple example of how your JavaScript code could look like:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello World!</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+<p>Yup … nothing too fancy! You need to write your code as if you are pasting it in the console of your browser – ready for execution. When your extension is up and running you need to test and debug it. That means to reload the extension every time when you do a change, especially when changing the manifest.json file. That way, you are changing how the whole extension should behave and what resources should be loaded within it.</p>
+
+<p>Google, however, has thoughtfully created functionality to reload the extension on the go by clicking the circular arrow on the bottom right corner of our extension card in chrome://extensions.
+This is my Chrome using dark mode and this is my extension’s card.</p>
+
+<h3 id="3-importing-extension-icon">3. Importing Extension Icon</h3>
+<p>If you want to customize your extension even more, you can add a custom icon. To do that, you need to add the following properties into your manifest.json file like showed into the example json file:
+<strong>icons</strong> – This is the property responsible for the icons the user sees when a user accesses the Chrome extensions page ( like in the icon above ) and the extension’s icons on the top right corner of your browser.</p>
+<h3 id="4-accessible-resources">4. Accessible Resources</h3>
+<p>Sometimes you may want your extension to load resources like pictures, mp3 files or any other type of files. Where should you store those mp3, pictures and etc.?</p>
+
+<p>To load and give access to resources, you need to tell the manifest.json file that these files are actually there and can be used. You do that by adding the following piece of code in your JSON file. By using **, you are telling your extension to look for all files in the resources folder recursively.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+   </span><span class="nl">"web_accessible_resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"resources/**"</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>The next step is to use the linked resources and that is done by using the function chrome.extension.getURL();. In our case we could actually assign the mp3 file into a variable and then use it later on like this:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">musicURL</span> <span class="o">=</span> <span class="nx">chrome</span><span class="p">.</span><span class="nx">extension</span><span class="p">.</span><span class="nx">getURL</span><span class="p">(</span><span class="dl">'</span><span class="s1">/resources/</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">memeName</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/music.mp3</span><span class="dl">'</span>  <span class="p">);</span>
+<span class="kd">let</span> <span class="nx">music</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Audio</span><span class="p">(</span><span class="nx">musicURL</span><span class="p">);</span>
+<span class="nx">music</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+</code></pre></div></div>
+<p>When you start developing your extension, you will need to know where all of the errors (following/changing this implementation) will be logged. Chrome browser will keep a backlog with all the errors in the extension’s card ( button “Errors” ).</p>
+<h3 id="wrapping-it-up">Wrapping it up</h3>
+<p>You can find the other files’ content and here is how the whole extension’s structure looks like:
+<img src="/blog/images/creating-simple-chrome-extension/file_structure.png" alt="This is my VS Code using dark mode" />
+You can find the whole project at this <a href="https://github.com/mariyan-dimitrov/dank-customizer-extension-asana">GitHub repo</a>.</p>
+
+<h3 id="further-faq">Further FAQ</h3>
+<p>Do I need Google / Chrome permission to run an extension? – No. These are custom extensions that we run locally. It is like changing the HTML of a site locally. It is not violating any rules.
+Are there any paid extensions? – Yes, there are many paid extensions. Some of them are single purchase and some of them are with a subscription plan.
+Chrome extensions personalize your browser experience and make it more productive. They are easy to build and add, and a lot of fun to develop.</p>
+<h3 id="cta">CTA:</h3>
+<p>Ask your question about Chrome extensions here. DevriX front-end developers will be glad to share their experience with you.</p>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      Blog writen by Mariyan Dimitrov (<a href="https://www.linkedin.com/in/mariyan-dimitrov-562b21160/">@LinkedIn</a>).<br>
+      &lt;/&gt; available on <a href="https://github.com/mariyan-dimitrov/">GitHub</a>.
+    </small>
+  </div>
+</footer>
+
+<script type="text/javascript">
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/blog/sw.js")
+    }
+</script>
+
+</body>
+</html>

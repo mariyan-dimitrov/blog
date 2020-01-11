@@ -20,7 +20,7 @@
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for Mariyan Dimitrov" href="/blog/feed.xml" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/blog/css/pixyll.css?201910142315" type="text/css">
+    <link rel="stylesheet" href="/blog/css/pixyll.css?202001111753" type="text/css">
 
     <!-- Fonts -->
     
@@ -182,31 +182,31 @@
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */</span>
-<span class="nx">registerBlockType</span><span class="p">(</span><span class="s1">'cgb/block-member-short-bio'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">registerBlockType</span><span class="p">(</span><span class="dl">'</span><span class="s1">cgb/block-member-short-bio</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
 	<span class="c1">// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.</span>
-	<span class="na">title</span><span class="p">:</span> <span class="nx">__</span><span class="p">(</span><span class="s1">'Member Short Bio'</span><span class="p">),</span> <span class="c1">// Block title.</span>
-	<span class="na">icon</span><span class="p">:</span> <span class="s1">'admin-users'</span><span class="p">,</span> <span class="c1">// Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.</span>
-	<span class="na">category</span><span class="p">:</span> <span class="s1">'common'</span><span class="p">,</span> <span class="c1">// Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.</span>
+	<span class="na">title</span><span class="p">:</span> <span class="nx">__</span><span class="p">(</span><span class="dl">'</span><span class="s1">Member Short Bio</span><span class="dl">'</span><span class="p">),</span> <span class="c1">// Block title.</span>
+	<span class="na">icon</span><span class="p">:</span> <span class="dl">'</span><span class="s1">admin-users</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.</span>
+	<span class="na">category</span><span class="p">:</span> <span class="dl">'</span><span class="s1">common</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.</span>
 	<span class="na">keywords</span><span class="p">:</span> <span class="p">[</span>
-		<span class="nx">__</span><span class="p">(</span><span class="s1">'my-block — CGB Block'</span><span class="p">),</span>
-		<span class="nx">__</span><span class="p">(</span><span class="s1">'CGB Example'</span><span class="p">),</span>
-		<span class="nx">__</span><span class="p">(</span><span class="s1">'create-guten-block'</span><span class="p">),</span>
+		<span class="nx">__</span><span class="p">(</span><span class="dl">'</span><span class="s1">my-block — CGB Block</span><span class="dl">'</span><span class="p">),</span>
+		<span class="nx">__</span><span class="p">(</span><span class="dl">'</span><span class="s1">CGB Example</span><span class="dl">'</span><span class="p">),</span>
+		<span class="nx">__</span><span class="p">(</span><span class="dl">'</span><span class="s1">create-guten-block</span><span class="dl">'</span><span class="p">),</span>
 	<span class="p">],</span>
 	<span class="na">attributes</span><span class="p">:</span> <span class="p">{</span>
 		<span class="na">names</span><span class="p">:</span> <span class="p">{</span>
-			<span class="na">type</span><span class="p">:</span> <span class="s1">'string'</span><span class="p">,</span>
+			<span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">,</span>
 		<span class="p">},</span>
 		<span class="na">position</span><span class="p">:</span> <span class="p">{</span>
-			<span class="na">type</span><span class="p">:</span> <span class="s1">'string'</span><span class="p">,</span>
+			<span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">,</span>
 		<span class="p">},</span>
 		<span class="na">mediaID</span><span class="p">:</span> <span class="p">{</span>
-			<span class="na">type</span><span class="p">:</span> <span class="s1">'number'</span><span class="p">,</span>
+			<span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span><span class="p">,</span>
 		<span class="p">},</span>
 		<span class="na">mediaURL</span><span class="p">:</span> <span class="p">{</span>
-			<span class="na">type</span><span class="p">:</span> <span class="s1">'string'</span><span class="p">,</span>
-			<span class="na">source</span><span class="p">:</span> <span class="s1">'attribute'</span><span class="p">,</span>
-			<span class="na">selector</span><span class="p">:</span> <span class="s1">'img'</span><span class="p">,</span>
-			<span class="na">attribute</span><span class="p">:</span> <span class="s1">'src'</span><span class="p">,</span>
+			<span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">,</span>
+			<span class="na">source</span><span class="p">:</span> <span class="dl">'</span><span class="s1">attribute</span><span class="dl">'</span><span class="p">,</span>
+			<span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">img</span><span class="dl">'</span><span class="p">,</span>
+			<span class="na">attribute</span><span class="p">:</span> <span class="dl">'</span><span class="s1">src</span><span class="dl">'</span><span class="p">,</span>
 		<span class="p">},</span>
 	<span class="p">},</span>
 </code></pre></div></div>
@@ -244,20 +244,20 @@
 				<span class="na">type=</span><span class="s2">"image"</span>
 				<span class="na">value=</span><span class="si">{</span><span class="nx">mediaID</span><span class="si">}</span>
 				<span class="na">render=</span><span class="si">{</span><span class="p">({</span> <span class="nx">open</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
-					<span class="p">&lt;</span><span class="nc">Button</span> <span class="na">className=</span><span class="si">{</span><span class="nx">mediaID</span> <span class="p">?</span> <span class="s1">'image-button'</span> <span class="p">:</span> <span class="s1">'button button-large'</span><span class="si">}</span> <span class="na">onClick=</span><span class="si">{</span><span class="nx">open</span><span class="si">}</span><span class="p">&gt;</span>
-						<span class="si">{</span><span class="o">!</span><span class="nx">mediaID</span> <span class="p">?</span> <span class="nx">__</span><span class="p">(</span><span class="s1">'Upload Image'</span><span class="p">)</span> <span class="p">:</span> <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src=</span><span class="si">{</span><span class="nx">mediaURL</span><span class="si">}</span> <span class="p">/&gt;</span><span class="si">}</span>
+					<span class="p">&lt;</span><span class="nc">Button</span> <span class="na">className=</span><span class="si">{</span><span class="nx">mediaID</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">image-button</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">button button-large</span><span class="dl">'</span><span class="si">}</span> <span class="na">onClick=</span><span class="si">{</span><span class="nx">open</span><span class="si">}</span><span class="p">&gt;</span>
+						<span class="si">{</span><span class="o">!</span><span class="nx">mediaID</span> <span class="p">?</span> <span class="nx">__</span><span class="p">(</span><span class="dl">'</span><span class="s1">Upload Image</span><span class="dl">'</span><span class="p">)</span> <span class="p">:</span> <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src=</span><span class="si">{</span><span class="nx">mediaURL</span><span class="si">}</span> <span class="p">/&gt;</span><span class="si">}</span>
 					<span class="p">&lt;/</span><span class="nc">Button</span><span class="p">&gt;</span>
 				<span class="p">)</span><span class="si">}</span>
 			<span class="p">/&gt;</span>
 			<span class="p">&lt;</span><span class="nc">RichText</span>
 				<span class="na">tagName=</span><span class="s2">"strong"</span>
-				<span class="na">placeholder=</span><span class="si">{</span><span class="nx">__</span><span class="p">(</span><span class="s1">'Type Names here...'</span><span class="p">)</span><span class="si">}</span>
+				<span class="na">placeholder=</span><span class="si">{</span><span class="nx">__</span><span class="p">(</span><span class="dl">'</span><span class="s1">Type Names here...</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span>
 				<span class="na">value=</span><span class="si">{</span><span class="nx">names</span><span class="si">}</span>
 				<span class="na">onChange=</span><span class="si">{</span><span class="nx">onNamesChange</span><span class="si">}</span>
 			<span class="p">/&gt;</span>
 			<span class="p">&lt;</span><span class="nc">RichText</span>
 				<span class="na">tagName=</span><span class="s2">"span"</span>
-				<span class="na">placeholder=</span><span class="si">{</span><span class="nx">__</span><span class="p">(</span><span class="s1">'Type Position here...'</span><span class="p">)</span><span class="si">}</span>
+				<span class="na">placeholder=</span><span class="si">{</span><span class="nx">__</span><span class="p">(</span><span class="dl">'</span><span class="s1">Type Position here...</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span>
 				<span class="na">value=</span><span class="si">{</span><span class="nx">position</span><span class="si">}</span>
 				<span class="na">onChange=</span><span class="si">{</span><span class="nx">onPositionChange</span><span class="si">}</span>
 			<span class="p">/&gt;</span>
@@ -301,10 +301,10 @@
 	<span class="p">}</span> <span class="o">=</span> <span class="nx">props</span><span class="p">;</span>
 	<span class="k">return</span> <span class="p">(</span>
 		<span class="p">&lt;</span><span class="nt">div</span> <span class="na">className=</span><span class="s2">"dx-team-member"</span><span class="p">&gt;</span>
-			<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href=</span><span class="si">{</span><span class="s2">"http://devrix.com/about/team/"</span><span class="o">+</span><span class="nx">names</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">()</span><span class="si">}</span><span class="p">&gt;</span>
+			<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href=</span><span class="si">{</span><span class="dl">"</span><span class="s2">http://devrix.com/about/team/</span><span class="dl">"</span><span class="o">+</span><span class="nx">names</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="dl">'</span><span class="s1"> </span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">-</span><span class="dl">'</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">()</span><span class="si">}</span><span class="p">&gt;</span>
 				<span class="si">{</span>
 					<span class="nx">mediaURL</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
-						<span class="p">&lt;</span> <span class="nt">img</span> <span class="na">className=</span><span class="si">{</span><span class="s2">"size-full wp-image-"</span> <span class="o">+</span> <span class="nx">mediaID</span><span class="si">}</span> <span class="na">src=</span><span class="si">{</span><span class="nx">mediaURL</span><span class="si">}</span> <span class="na">alt=</span><span class="si">{</span><span class="s2">"team-"</span> <span class="o">+</span> <span class="nx">names</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">()</span><span class="si">}</span> 
+						<span class="p">&lt;</span> <span class="nt">img</span> <span class="na">className=</span><span class="si">{</span><span class="dl">"</span><span class="s2">size-full wp-image-</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">mediaID</span><span class="si">}</span> <span class="na">src=</span><span class="si">{</span><span class="nx">mediaURL</span><span class="si">}</span> <span class="na">alt=</span><span class="si">{</span><span class="dl">"</span><span class="s2">team-</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">names</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="dl">'</span><span class="s1"> </span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">-</span><span class="dl">'</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">()</span><span class="si">}</span> 
 						<span class="na">width=</span><span class="s2">"168"</span> <span class="na">height=</span><span class="s2">"168"</span> <span class="nt">data</span><span class="err">-</span><span class="nt">wp</span><span class="err">-</span><span class="na">pid=</span><span class="si">{</span><span class="nx">mediaID</span><span class="si">}</span> <span class="p">/&gt;</span>
 					<span class="p">)</span>
 				<span class="si">}</span>
