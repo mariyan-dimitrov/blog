@@ -4,7 +4,7 @@ title:  "Creating a simple chrome extension"
 date:   2019-10-07 00:34:10 +0200
 categories: chrome extensions
 ---
-## How to Create Your First Chrome Extension -v2
+## How to Create Your First Chrome Extension
 Chrome extensions are small programs that will customize your browsing experience. This short guide will help you understand and create a nice and simple file structure for the Chrome extension.
 
 ### Chrome Extension Baseline
